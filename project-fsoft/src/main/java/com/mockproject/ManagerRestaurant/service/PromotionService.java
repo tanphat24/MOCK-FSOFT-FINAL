@@ -25,4 +25,8 @@ public class PromotionService {
 	public void deletePromotion(int id) {
 		promotionRepository.deleteById(id);;
 	}
+	public Promotion getPromotionId(Double discount) {
+		Promotion dis = promotionRepository.getPromotionId(discount);
+		return dis;
+	}
 }

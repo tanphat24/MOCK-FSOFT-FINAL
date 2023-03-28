@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mockproject.ManagerRestaurant.model.Bill;
-import com.mockproject.ManagerRestaurant.model.DSmon;
 import com.mockproject.ManagerRestaurant.repository.BillRepository;
+import com.mockproject.ManagerRestaurant.view.DSmon;
 
 @Service
 public class BillService {
@@ -58,5 +58,8 @@ public class BillService {
 		}
 		return mons;
 		
+	}
+	public Bill save(Bill bill) {
+		return billRepository.save(bill);
 	}
 }

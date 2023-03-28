@@ -1,4 +1,4 @@
-package com.mockproject.ManagerRestaurant.model;
+package com.mockproject.ManagerRestaurant.view;
 
 import java.sql.Date;
 

@@ -1,4 +1,4 @@
-package com.mockproject.ManagerRestaurant.model;
+package com.mockproject.ManagerRestaurant.view;
 
 public class DSmon {
 	private int stt;

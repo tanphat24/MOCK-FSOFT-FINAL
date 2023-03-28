@@ -6,12 +6,25 @@
 	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a813305c64.js" crossorigin="anonymous"></script>
 	<title>Bill - Restaurant Banana</title>
+	<script language="javascript">
+            function genderChanged()
+            {
+            	var x = document.getElementById("selectpro").value;
+            	var price = document.getElementById('txtprice').value;
+            	var message = document.getElementById('txtbill');
+            	priced = parseFloat(price);
+                disc = parseFloat(x);
+                total = (priced/100)*(100-disc);
+                message.innerHTML =total;
+            }
+ 
+        </script>
 </head>
 <body>
 	<div class="containerBill">
-		<form action="" class="contentBill">
+		<form action="/updatebill" method="post" class="contentBill">
 			<div class="bill-content">
-				<table class="content-bill-1">
+				<table class="content-bill-1" >
 					<caption>Hóa đơn</caption>
 					<tr>
 						<td><label id="lb1">Mã hóa đơn: </label></td>
@@ -27,11 +40,16 @@
 					</tr>
 					<tr>
 						<td><label id="lb6">Khuyến mãi </label></td>
-						<td><input id="txtdiscout" type="text" name="discout" placeholder="Khuyến mãi"></td>
+						<td>
+							<select id="selectpro" name="promotionbill" onchange="genderChanged()">
+								<option th:each="list : ${listpromotion}" th:text="${list.getPromoName}+' | '+${list.getDiscount}" th:value="${list.getDiscount}">
+								</option>
+							</select>
+						</td>
 					</tr>
 					<tr>
 						<td><label id="lb7">Tổng hóa đơn: </label></td>
-						<td><input id="txtbill" type="text" name="totalBill" placeholder="Tổng hóa đơn" th:value="${bill.getBillTotal}" readonly="readonly"></td>
+						<td><p id="txtbill" th:text="${bill.getBillTotal}" ></p></td>
 					</tr>
 					<tr>
 						<td><label id="lb9">Trạng thái:</label></td>
