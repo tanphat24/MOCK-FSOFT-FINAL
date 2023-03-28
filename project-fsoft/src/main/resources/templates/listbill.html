@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../listbillstyles.css">
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a813305c64.js" crossorigin="anonymous"></script>
+    <title>List bill - Restaurant Banana</title>
+</head>
+<body>
+    <header>
+        
+    </header>
+    <div class="content">
+        <div class="container">
+            <table class="menuItem">
+                <caption id="menu-items">Chức năng:</caption>
+                <tr>
+                    <th><a class="menu-item" href="/listbill">Danh sách hóa đơn</a></th>
+                </tr>
+                <tr>
+                    <th><a class="menu-item" href="">Thống kê doanh thu</a></th>
+                </tr>
+                <tr>
+                    <th><a class="menu-item" href="/listpromotion">Danh sách khuyến mãi</a></th>
+                </tr>
+            </table>
+        </div>
+        <div class="list-bill">
+            <form:form>
+                <div id="tag-search">
+                    <form method="get" class="searchbill" action="/listbill/search">
+                        <input type="search" name="search" id="search" placeholder="Search"/>
+                        <button type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                   
+                    <form action="/listbill/filter" method="get" class="filter-bill">
+                    	<label id="l8">Lọc dữ liệu: </label>
+                    	<select name="filterbill" class="selectPay">
+							<option value="">trống</option>
+							<option th:each="list : ${listfilter}" th:text="${list}" th:value="${list}"></option>
+						</select>
+						<button type="submit"><i class="fa-sharp fa-regular fa-filter"></i></button>
+					</form>
+                </div>
+                <div id="table-bill">
+                    <table class="table-bill">
+                        <caption>Danh sách hóa đơn</caption>
+                        <tr>
+                            <th>
+                                <form:label>Mã hóa đơn</form:label>
+                            </th>
+                            <th>
+                                <form:label>Tên khách hàng</form:label>
+                            </th>
+                            <th>
+                                <form:label>Ngày đặt</form:label>
+                            </th>
+                            <th>
+                                <form:label>Tổng giá</form:label>
+                            </th>
+                            <th>
+                                <form:label>Trạng thái</form:label>
+                            </th>
+                            <th>
+                                <form:label>Ngày thanh toán</form:label>
+                            </th>
+                            <th>
+                                <form:label>Option</form:label>
+                            </th>
+                        </tr>
+                       
+                        
+                        <tr th:each="list : ${billlist}">
+                            <td th:text="${list.getID}"></td>
+                            <td th:text="${list.getName}" ></td>
+                            <td th:text="${list.getBillCreate}"></td>
+                            <td th:text="${list.getBillTotal}"></td>
+                            <td th:text="${list.getBillStatus}"></td>
+                            <td th:text="${list.getBillUpdate}"></td>
+                            <td >
+                                <button class="btedit-bill" type="button" 
+                                th:attr="onclick='location.href=\'' + @{/editbill/(id=${list.getID})} + '\''">Edit</button>
+                            </td>
+                        </tr>
+                         
+                    </table>
+                 <!--    <div class="pagination">
+                        <a class="page" href="">1</a>
+                        <a class="page" href="">2</a>
+                        <a class="page" href="">3</a>
+                        <a class="page" href="">4</a>
+                        <a class="page" href="">5</a>
+                        <a class="page" href="">6</a>
+                    </div> -->
+                </div>
+            </form:form>
+        </div>
+    </div>
+</body>
+</html>

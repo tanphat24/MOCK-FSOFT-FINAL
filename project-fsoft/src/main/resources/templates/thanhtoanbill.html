@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../Billstyles.css">
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a813305c64.js" crossorigin="anonymous"></script>
+	<title>Bill - Restaurant Banana</title>
+</head>
+<body>
+	<div class="containerBill">
+		<form action="" class="contentBill">
+			<div class="bill-content">
+				<table class="content-bill-1">
+					<caption>Hóa đơn</caption>
+					<tr>
+						<td><label id="lb1">Mã hóa đơn: </label></td>
+						<td><input id="txtidbill" type="text" name="idBill" placeholder="Mã hóa đơn" th:value="${bill.getID}" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><label id="lb2">Tên khách hàng: </label></td>
+						<td><input id="txtname" type="text" name="nameCustomer" placeholder="Tên khách hàng" th:value="${bill.getName}" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><label id="lb4">Tổng giá: </label></td>
+						<td><input id="txtprice" type="text" name="totalPrice" placeholder="Tổng giá" th:value="${bill.getBillTotal}" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><label id="lb6">Khuyến mãi </label></td>
+						<td><input id="txtdiscout" type="text" name="discout" placeholder="Khuyến mãi"></td>
+					</tr>
+					<tr>
+						<td><label id="lb7">Tổng hóa đơn: </label></td>
+						<td><input id="txtbill" type="text" name="totalBill" placeholder="Tổng hóa đơn" th:value="${bill.getBillTotal}" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><label id="l8">Hình thức thanh toán: </label></td>
+						<td>
+							<select name="methodPay" class="selectPay">
+								<option th:each="list3 : ${listpay}" th:text="${list3.getMethodPayName}" th:value="${list3.getMethodPayId}"
+								th:selected="${list3.getMethodPayId==bill.getMethodPayId}"></option>
+
+							</select><br>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="bill-content2">
+				<table class="content-bill-2">
+					<caption>Danh sách món:</caption>
+					<tr id="headtable">
+						<th>#</th>
+						<th>Tên món</th>
+						<th>Số lượng</th>
+						<th>Giá tiền</th>
+					</tr>
+					<tr th:each="list2 : ${listproduct}">
+						<td th:text="${list2.getStt}"></td>
+						<td th:text="${list2.getName}"></td>
+						<td th:text="${list2.getSoluong}"></td>
+						<td th:text="${list2.getPrice}"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="buttonbill">
+				<button id="btsubmit" type="submit">Save</button>
+				<button id="btcancel" type="button" th:attr="onclick='location.href=\'' + @{/listbill/} + '\''">Cancel</button>
+			</div>
+			
+		</form>
+	</div>
+</body>
+</html>
