@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Lora", serif;
+}
+
+header {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.container {
+  width: 85%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 32px;
+}
+.navbar > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+}
+
+.navbar li {
+  list-style: none;
+}
+
+.navbar li > a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+.navbar li > a:hover{
+    color: #ff6426;
+}
+.btn-book-table {
+    border: 1px solid transparent;
+    border-radius: 24px;
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: #ff6426;
+    color: #fff;
+}
+
+.btn-book-table:hover{
+    background-color: #fff;
+    color: #ff6426;
+    border-color: #ff6426;
+}
