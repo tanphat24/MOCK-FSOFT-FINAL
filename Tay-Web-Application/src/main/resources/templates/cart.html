@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <style>
+        .cimg{
+            width: 15%;
+            float: left;
+            height: 200px;
+        }
+        .content{
+            height: 200px;
+            margin-top: 35px;
+            display: inline-block;
+        }
+        .cha{
+            display: block;
+            width: 100%;
+        }
+        img{
+            width: 150px;
+            height: 150px;
+        }
+        .containerModal{
+            width: 180%;
+            margin-left: -40%;
+        }
+        p{
+            font-family: "Lora", serif;
+            line-height: 1.7;
+            font-size: 15px;
+            margin-bottom: 0px;
+            color: #555555;
+        }
+        .price{
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff6426;
+            margin-top: 5px;
+        }
+        .nameP{
+            font-size: 25px;
+            font-weight: 700;
+            font-family: "Cardo", serif;
+            line-height: 1.2em;
+            color: #2c3033;
+        }
+        .title-content{
+            font-size: 40px;
+            color: #2c3033;
+            line-height: 1.25;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            font-family: "Cardo", serif;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="slick.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nine.css">
+</head>
+<body style="background-color: #FFCCCC">
+<div style="width: 80%;;margin-left: 10%;border-radius: 10px;margin-top: 50px">
+    <div class="row">
+        <div class="col-md-12">
+            <form th:action="@{/product}" th:object="${cart}" method="post">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-danger">
+                            <a href="/product" style="text-decoration: none;color: #f2f2f2">Trở lại</a>
+                        </button>
+                        <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>
+                        <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div  class="row tab-content">
+<!--                            <div class="col-md-1"></div>-->
+                            <div class="col-sm-6 col-lg-6 p-4 " th:each="listProduct: ${cart.products}">
+                                <div class="row p-3 border bg-light" style="border: 1px solid #e7e7e7;border-radius: 29px 5px 118px 5px;">
+                                    <!--                                        <div class="col-sm-1 col-lg-1" style="background-color: #f6f5f1"></div>-->
+                                        <div class="cimg col-md-4 p-3">
+                                            <img th:src="${listProduct.getKey().image}" alt="" style="width:100%;height:140px" >
+                                        </div>
+                                        <div class="content col-md-8 p-3" style="height: 165px">
+                                            Tên sản phẩm : <h4 th:text="${listProduct.getKey().productName}" style="display: inline"></h4>
+                                            <br>
+                                            Mô tả : <h4 th:text="${listProduct.getKey().productDescription}" style="display: inline"></h4>
+                                            <br>
+                                            Gía : <h4 th:text="${listProduct.getKey().productPrice}" style="display: inline"></h4>
+                                            <br>
+                                            Số lượng : <div style="display: inline">
+                                            <a id="decrease_button" th:text="${'-'}"></a>
+                                            <span th:text="${listProduct.getValue()}"></span>
+                                            <a id="increase_button" th:href="@{/add/__${listProduct.getKey().productId}__(action='show')}"
+                                               th:text="${'+'}"></a>
+                                        </div>
+
+                                        </div>
+                                </div>
+                            </div>
+<!--                            <div class="col-md-1"></div>-->
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    Total <h3 th:text="${cart.countTotalPayment()}"></h3>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

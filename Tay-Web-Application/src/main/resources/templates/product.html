@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="slick.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nine.css">
+    <style>
+        p{
+            font-family: "Lora", serif;
+            line-height: 1.7;
+            font-size: 15px;
+            margin-bottom: 0px;
+            color: #555555;
+        }
+        .price{
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff6426;
+            margin-top: 5px;
+        }
+        .nameP{
+            font-size: 25px;
+            font-weight: 700;
+            font-family: "Cardo", serif;
+            line-height: 1.2em;
+            color: #2c3033;
+        }
+        .title-content{
+            font-size: 40px;
+            color: #2c3033;
+            line-height: 1.25;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            font-family: "Cardo", serif;
+        }
+    </style>
+</head>
+<body>
+<button type="button" class="btn btn-danger"> <a th:href="@{/shopping-cart}" style="text-decoration: none">giỏ hàng</a></button>
+<!--<a th:href="@{/shopping-cart}"> giỏ hàng</a>-->
+<div>
+<!--    <img src="https://www.the-berkeley.co.uk/siteassets/restaurants&#45;&#45;bars/the-bishop-at-the-berkeley/new/the-bishop-at-the-berkeley-restaurants-header-1920_720.jpg" alt="" width="100%"; height="300px">-->
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://inan2h.vn/wp-content/uploads/2022/12/in-banner-quang-cao-do-an-7-1.jpg" class="d-block" alt="..."width="100%"; height="350px">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://intphcm.com/data/upload/mau-banner-dep.jpg" class="d-block" alt="..."width="100%"; height="350px">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.pinimg.com/originals/3f/8e/48/3f8e48a0b20f4dc0671a8e5e8dd861a4.jpg" class="d-block" alt="..."width="100%"; height="350px">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                </div>
+            </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<section class="food_menu gray_bg"  style="background-color: #f6f5f1;padding-top: 40px">
+    <div class="container" >
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="section_tittle">
+                    <p>Banana Menu</p>
+                    <h2 class="title-content">Banana Food Menu</h2>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="nav nav-tabs food_menu_nav" id="myTab" role="tablist" >
+                    <div class="col-lg-2" th:each="listTypeProduct:${listTypeProduct}" th:object="${listTypeProduct}">
+                        <div style="text-align: center">
+                            <a style="text-decoration: none;text-align: center" th:href="@{/{id}/detailTypeProduct(id=${listTypeProduct.typeProductId})}" th:text="${listTypeProduct.typeProductName}"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <a th:href="@{/product}" style="text-decoration: none">Tất cả</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-12">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active single-member" id="Special" role="tabpanel"
+                         aria-labelledby="Special-tab">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6 p-4 " th:each="listProduct:${listProduct}" th:object="${listProduct}" >
+                                    <div class="row p-3 border bg-light" style="border: 1px solid #e7e7e7;border-radius: 29px 5px 118px 5px;">
+<!--                                        <div class="col-sm-1 col-lg-1" style="background-color: #f6f5f1"></div>-->
+                                        <div class="col-sm-4 col-lg-4 p-3" style="position: relative" >
+                                            <img th:src="${listProduct.image}" class="mr-3" alt="..." style="width:100%;height:140px">
+                                        </div>
+                                        <div class="col-sm-8 col-lg-8 p-3" style="height: 165px">
+                                            <h3 class="nameP" th:text="${listProduct.productName}"></h3>
+                                            <p th:text="${listProduct.productDescription}"></p>
+                                            Số lượng: <span th:text="${listProduct.quantity}"></span><br>
+                                            <h5 class="price" th:text="${listProduct.productPrice}"></h5>
+<!--                                            <button class="btn btn-danger">Thêm vào giỏ hàng</button>-->
+<!--                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal" >Thêm vào giỏ hàng</button>-->
+                                            <button class="btn btn-danger">
+                                                <a th:href="@{/add/__${listProduct.productId}__(action='t')}" style="text-decoration: none;color: #f2f2f2">Thêm vào giỏ hàng</a>
+                                            </button>
+                                        </div>
+
+<!--                                        <div class="col-sm-1 col-lg-1" style="background-color: #f6f5f1"></div>-->
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+<!-- The Modal -->
+<!--<div class="modal fade" id="myModal">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content containerModal">-->
+
+<!--            &lt;!&ndash; Modal Header &ndash;&gt;-->
+<!--            <div class="modal-header">-->
+<!--                <h4 class="modal-title">Giỏ hàng</h4>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Modal body &ndash;&gt;-->
+<!--            <div class="modal-body">-->
+<!--                <div style="width: 80%;;margin-left: 10%;">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                            <form th:action="@{/product}" th:object="${cart}" method="post">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-12">-->
+<!--                                        <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>-->
+<!--                                        <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-sm-6 col-lg-6 p-4 " th:each="listProduct: ${cart.products}">-->
+<!--                                        <div class="row p-3 border bg-light" style="border: 1px solid #e7e7e7;border-radius: 29px 5px 118px 5px;">-->
+<!--                                            &lt;!&ndash;                                        <div class="col-sm-1 col-lg-1" style="background-color: #f6f5f1"></div>&ndash;&gt;-->
+<!--                                            <div class="cha">-->
+<!--                                                <div class="cimg">-->
+<!--                                                    <img th:src="${listProduct.getKey().image}" alt="" style="width:100%;height:100px" >-->
+<!--                                                </div>-->
+<!--                                                <div class="content">-->
+<!--                                                    Tên sản phẩm : <h4 th:text="${listProduct.getKey().productName}" style="display: inline"></h4>-->
+<!--                                                    <br>-->
+<!--                                                    Mô tả : <h4 th:text="${listProduct.getKey().productDescription}" style="display: inline"></h4>-->
+<!--                                                    <br>-->
+<!--                                                    Gía : <h4 th:text="${listProduct.getKey().productPrice}" style="display: inline"></h4>-->
+<!--                                                    <br>-->
+<!--                                                    Số lượng : <div style="display: inline">-->
+<!--                                                    <a id="decrease_button" th:text="${'-'}"></a>-->
+<!--                                                    <span th:text="${listProduct.getValue()}"></span>-->
+<!--                                                    <a id="increase_button" th:href="@{/add/__${listProduct.getKey().productId}__(action='show')}"-->
+<!--                                                       th:text="${'+'}"></a>-->
+<!--                                                </div>-->
+
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div>-->
+<!--                                    Total <h3 th:text="${cart.countTotalPayment()}"></h3>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <div class="modal-footer">-->
+<!--                        <div class="col-md-3"></div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đặt món</button>-->
+<!--                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Quay lại</button>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-3"></div>-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+</html>
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #fff8f8
+        }
+
+        th {
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body style="background-color: #CCFFCC;">
+<div style="width: 60%; margin-left: 20%;background-color: #FFCCCC;margin-top: 50px;border-radius: 10px">
+    <form action="/admin/update" method="post" th:object="${product}" style="padding: 30px">
+        <table>
+            <tr>
+                <td><input class="form-control" type="text" th:field="*{productId}" hidden></td>
+            </tr>
+            <tr>
+                <td>Tên sản phẩm</td>
+                <td><input class="form-control" type="text" th:field="*{productName}"></td>
+            </tr>
+            <tr>
+                <td>Gía sản phẩm</td>
+                <td><input class="form-control" type="text" th:field="*{productPrice}" ></td>
+            </tr>
+            <tr>
+                <td>Mô tả sản phẩm</td>
+                <td><input class="form-control" type="text" th:field="*{productDescription}" ></td>
+            </tr>
+            <tr>
+                <td>Link hình ảnh sản phẩm</td>
+                <td><input class="form-control" type="text" th:field="*{image}" ></td>
+            </tr>
+            <tr>
+                <td>Loại sản phẩm</td>
+                <td>
+                    <select class="form-select form-select-lg mb-3" th:field="*{typeProduct}">
+                        <option th:each="typeProduct :${typeProduct}" th th:value="${typeProduct.typeProductId}" th:text="${typeProduct.typeProductName}"></option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-success" type="submit">Update</button>
+        <button class="btn btn-primary"><a th:href="@{/admin/list}" style="text-decoration: none;color: #f2f2f2">Quay lại trang list</a></button>
+    </form>
+</div>
+</body>
+</html>
