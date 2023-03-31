@@ -8,25 +8,11 @@ import org.springframework.stereotype.Service;
 import com.mockproject.ManagerRestaurant.model.Promotion;
 import com.mockproject.ManagerRestaurant.repository.PromotionRepository;
 
-@Service
-public class PromotionService {
-	@Autowired
-	private PromotionRepository promotionRepository;
-	
-	public List<Promotion> getAll() {
-		return promotionRepository.findAll();
-	}
-	public Promotion save(Promotion promotion) {
-		return promotionRepository.save(promotion);
-	}
-	public Promotion getPromotionById(Integer id) {
-		return promotionRepository.findById(id).orElse(null);
-	}
-	public void deletePromotion(int id) {
-		promotionRepository.deleteById(id);;
-	}
-	public Promotion getPromotionId(Double discount) {
-		Promotion dis = promotionRepository.getPromotionId(discount);
-		return dis;
-	}
+
+public interface PromotionService {
+	List<Promotion> getAll();
+	Promotion save(Promotion promotion);
+	Promotion getPromotionById(Integer id);
+	void deletePromotion(int id);
+	Promotion getPromotionId(Double discount);
 }
