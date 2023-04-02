@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="slick.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nine.css">
+    <style>
+        span{
+            float: right;
+        }
+        .tit{
+            color: red;
+            /* float: right; */
+        }
+        .imm{
+            background-image:
+            url(https://media-cdn.tripadvisor.com/media/photo-s/15/c5/84/65/khong-gian-nha-hang-vu.jpg);
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body class="imm">
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12" style="background-color: #f8d1d1;border-radius: 5px;border: 1px solid">
+                        <h3>Xác nhận đặt món</h3>
+                        <form action="/orderp" method="post" th:object="${detail}" style="padding: 30px">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <span class="tit">*</span>
+                                    <span class="tat">Tên món</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-select form-select-lg mb-3" th:field="*{product}">
+                                        <option th:each="product :${productOd}" th:value="${product.productId}" th:text="${product.productName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <span class="tit">*</span>
+                                    <span class="tat">Mô tả</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <span th:field="*{product}">
+                                        <span th:each="product :${productOd}" th:text="${product.productDescription}"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <span class="tit">*</span>
+                                    <span class="tat">Gía</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <span  th:field="*{product}">
+                                        <span th:each="product :${productOd}" th:text="${product.productPrice}"></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <span class="tit">*</span>
+                                    <span class="tat">Số lượng đặt</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" th:field="*{quantity}">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <span class="tit">*</span>
+                                    <span class="tat">Ghi chú</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" th:field="*{note}">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-success" type="submit" onclick="show()">Đặt món</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary"><a th:href="@{/product}" style="text-decoration: none;color: #f2f2f2">Quay lại</a></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    function show(){
+        alert("Đặt thành công!");
+    }
+</script>
