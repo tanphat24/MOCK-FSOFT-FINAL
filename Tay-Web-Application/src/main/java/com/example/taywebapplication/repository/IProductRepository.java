@@ -13,4 +13,7 @@ public interface IProductRepository extends JpaRepository<Product,Integer> {
     List<Product> getProductByIdTypeProduct(TypeProduct id);
     List<Product> findAllByTypeProduct(TypeProduct id);
 
+    @Query(value = "select s from product as s where s.productName like %:productName%",nativeQuery = false)
+    List<Product> findAllByNameProduct(@Param("productName") String productName);
+
 }

@@ -30,7 +30,9 @@
     <form action="/admin/update" method="post" th:object="${product}" style="padding: 30px">
         <table>
             <tr>
-                <td><input class="form-control" type="text" th:field="*{productId}" hidden></td>
+                <td><label>
+                    <input class="form-control" type="text" th:field="*{productId}" hidden>
+                </label></td>
             </tr>
             <tr>
                 <td>Tên sản phẩm</td>

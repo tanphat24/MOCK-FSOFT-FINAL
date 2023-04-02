@@ -13,5 +13,6 @@ public interface IProductService {
     public List<Product> getProductByIdTypeProduct(TypeProduct id);
     public void addNewProduct(Product product);
     public void deleteProduct(int id);
+    List<Product> search(String productName);
 
 }

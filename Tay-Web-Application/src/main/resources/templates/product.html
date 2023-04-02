@@ -91,6 +91,14 @@
                 <div class="section_tittle">
                     <p>Banana Menu</p>
                     <h2 class="title-content">Banana Food Menu</h2>
+
+                </div>
+                <div class="row">
+                    <h5>Nhập tên món</h5>
+                    <form action="/search" method="post" name="search">
+                        <input class="form-control" type="text" name="search" style="width: 80%; float: left" >
+                        <button class="btn btn-primary" style="float: left">Search</button>
+                    </form>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -127,6 +135,8 @@
                                             <button class="btn btn-danger">
                                                 <a th:href="@{/add/__${listProduct.productId}__(action='t')}" style="text-decoration: none;color: #f2f2f2">Thêm vào giỏ hàng</a>
                                             </button>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal"  >
+                                                <a th:href="@{/order(id=${listProduct.productId})}">Đặt món</a></button>
                                         </div>
 
 <!--                                        <div class="col-sm-1 col-lg-1" style="background-color: #f6f5f1"></div>-->
@@ -140,82 +150,5 @@
     </div>
 </section>
 </body>
-
-<!-- The Modal -->
-<!--<div class="modal fade" id="myModal">-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content containerModal">-->
-
-<!--            &lt;!&ndash; Modal Header &ndash;&gt;-->
-<!--            <div class="modal-header">-->
-<!--                <h4 class="modal-title">Giỏ hàng</h4>-->
-<!--                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; Modal body &ndash;&gt;-->
-<!--            <div class="modal-body">-->
-<!--                <div style="width: 80%;;margin-left: 10%;">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-12">-->
-<!--                            <form th:action="@{/product}" th:object="${cart}" method="post">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-md-12">-->
-<!--                                        <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>-->
-<!--                                        <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-sm-6 col-lg-6 p-4 " th:each="listProduct: ${cart.products}">-->
-<!--                                        <div class="row p-3 border bg-light" style="border: 1px solid #e7e7e7;border-radius: 29px 5px 118px 5px;">-->
-<!--                                            &lt;!&ndash;                                        <div class="col-sm-1 col-lg-1" style="background-color: #f6f5f1"></div>&ndash;&gt;-->
-<!--                                            <div class="cha">-->
-<!--                                                <div class="cimg">-->
-<!--                                                    <img th:src="${listProduct.getKey().image}" alt="" style="width:100%;height:100px" >-->
-<!--                                                </div>-->
-<!--                                                <div class="content">-->
-<!--                                                    Tên sản phẩm : <h4 th:text="${listProduct.getKey().productName}" style="display: inline"></h4>-->
-<!--                                                    <br>-->
-<!--                                                    Mô tả : <h4 th:text="${listProduct.getKey().productDescription}" style="display: inline"></h4>-->
-<!--                                                    <br>-->
-<!--                                                    Gía : <h4 th:text="${listProduct.getKey().productPrice}" style="display: inline"></h4>-->
-<!--                                                    <br>-->
-<!--                                                    Số lượng : <div style="display: inline">-->
-<!--                                                    <a id="decrease_button" th:text="${'-'}"></a>-->
-<!--                                                    <span th:text="${listProduct.getValue()}"></span>-->
-<!--                                                    <a id="increase_button" th:href="@{/add/__${listProduct.getKey().productId}__(action='show')}"-->
-<!--                                                       th:text="${'+'}"></a>-->
-<!--                                                </div>-->
-
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div>-->
-<!--                                    Total <h3 th:text="${cart.countTotalPayment()}"></h3>-->
-<!--                                </div>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="row">-->
-<!--                <div class="col-md-12">-->
-<!--                    <div class="modal-footer">-->
-<!--                        <div class="col-md-3"></div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đặt món</button>-->
-<!--                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Quay lại</button>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-3"></div>-->
-
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 </html>
 

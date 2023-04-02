@@ -1,7 +1,9 @@
 package com.example.taywebapplication.controller;
 
 import com.example.taywebapplication.model.Cart;
+import com.example.taywebapplication.model.DetailOrder;
 import com.example.taywebapplication.model.Product;
+import com.example.taywebapplication.service.IDetailOrderService;
 import com.example.taywebapplication.service.IProductService;
 import com.example.taywebapplication.service.ITypeProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class ProductController {
     private ITypeProductService typeProductService;
     @Autowired
     private IProductService productService;
+    @Autowired
+    private IDetailOrderService detailOrderService;
 //    @GetMapping("/list")
 //    public String showListProduct(Model model){
 //        model.addAttribute("listProduct", productService.getAll());
@@ -84,11 +88,35 @@ public class ProductController {
         }
         if (action.equals("show")) {
             cart.addProduct(productOptional.get());
-            return "redirect:/shopping-cart";
+//            return "redirect:/shopping-cart";
+//            String s = "redirect:/shopping-cart";
+            return new ResponseEntity<>(productOptional.get().getQuantity(), HttpStatus.NO_CONTENT);
         }
         cart.addProduct(productOptional.get());
 //        return "redirect:/product";
         return new ResponseEntity<>(productOptional.get(), HttpStatus.NO_CONTENT);
     }
+
+
+    @PostMapping("/search")
+    public String search(@RequestParam("search") String search, Model model){
+        model.addAttribute("listTypeProduct",typeProductService.getAll());
+        model.addAttribute("listProduct",productService.search(search));
+        return "product";
+    }
+
+//    @GetMapping("/order")
+//    public String order(@RequestParam("id") int id , Model model){
+//        model.addAttribute("product",productService.getProductById(id));
+//        model.addAttribute("detail", new DetailOrder());
+////        model.addAttribute("typeProduct",typeProductService.getAll());
+//        return "aaaaa";
+//    }
+//
+//    @PostMapping("/orderp")
+//    public String doCreate(@ModelAttribute("product") DetailOrder detailOrder){
+//        detailOrderService.save(detailOrder);
+//        return "redirect:/admin/listOrder";
+//    }
 
 }
