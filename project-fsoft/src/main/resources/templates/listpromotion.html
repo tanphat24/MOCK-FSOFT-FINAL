@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../listpromotionstyles.css">
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a813305c64.js" crossorigin="anonymous"></script>
+    <title>List Promotion - Restaurant Banana</title>
+</head>
+<body>
+    <header>
+        
+    </header>
+    <div class="content">
+        <div class="container">
+            <table class="menuItem">
+                <caption id="menu-items">Chức năng:</caption>
+                <tr>
+                    <th><a class="menu-item" href="/listbill">Danh sách hóa đơn</a></th>
+                </tr>
+                <tr>
+                    <th><a class="menu-item" href="">Thống kê doanh thu</a></th>
+                </tr>
+                <tr>
+                    <th><a class="menu-item" href="/listpromotion">Danh sách khuyến mãi</a></th>
+                </tr>
+            </table>
+        </div>
+        <div class="content-promotion">
+            <div class="content-promotion" id="Promotion-tag1">
+	            <div class="content-promotion-1" th:object="${promotion}">
+	            	<form th:action="@{/addPromotion/(id=*{PromoId})}" method="post" id="content-promotion-id" >
+	                	<table id="content-promotion-table">
+	                		<tr>
+	                			<td><label id="lb1" >Tên loại khuyến mãi:</label></td>
+	                			<td><input name="promotionname" type="text" placeholder="Tên khuyến mãi" th:field="*{PromoName}"></td>
+	                		</tr>
+	                		<tr>
+	                			<td><label id="lb1">Ngày bắt đầu:</label></td>
+	                			<td><input name="promotionstart" type="date" th:field="*{DayStart}"></td>
+	                		</tr>
+	                		<tr>
+	                			<td><label id="lb1">Ngày kết thúc:</label></td>
+	                			<td><input name="promotionend" type="date"  th:field="*{DayEnd}"></td>
+	                		</tr>
+	                		<tr>
+	                			<td><label id="lb1">Discount:</label></td>
+	                			<td><input name="promotiondis" type="text" placeholder="Giá trị khuyến mãi" th:field="*{Discount}">%</td>
+	                		</tr>
+	                	</table>
+	                	<div id="content-promotion-button">
+	                		<button type="submit" id="bt-save">Save</button>
+	                		<button type="reset" id="bt-reset">Reset</button>
+	                		<span th:if="${mess}!=''" th:text="${mess}"></span>
+	                	</div>
+	                </form>
+	            </div>
+                <div class="content-promotion-2">
+                	<form action="">
+                		<table>
+	                		<caption>Danh sách khuyến mãi</caption>
+	                		<tr>
+	                			<th> # </th>
+	                			<th>Tên</th>
+	                			<th>Ngày bắt đầu</th>
+	                			<th>Ngày kết thúc</th>
+	                			<th>Discount</th>
+	                			<th>Option</th>
+	                		</tr>
+	                		<tr th:each="list : ${listpromotion}">
+	                			<td th:text="${list.getPromoId}"></td>
+	                			<td th:text="${list.getPromoName}"></td>
+	                			<td th:text="${list.getDayStart}"></td>
+	                			<td th:text="${list.getDayEnd}"></td>
+	                			<td th:text="${list.getDiscount}"></td>
+	                			<td>
+	                				<button id="btedit" type="button"
+	                				th:attr="onclick='location.href=\'' + @{/editPromotion/(id=${list.getPromoId})} + '\''">Edit</button>
+	                                <button id="btdelete" type="button" 
+	                                th:attr="onclick='location.href=\'' + @{/deletePromotion/(id=${list.getPromoId})} + '\''">Delete</button>
+	                			</td>
+	                		</tr>
+	                	
+	                	</table>
+                	</form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

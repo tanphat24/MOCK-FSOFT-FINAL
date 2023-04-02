@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../Billstyles.css">
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a813305c64.js" crossorigin="anonymous"></script>
+	<title>Bill - Restaurant Banana</title>
+	<script language="javascript">
+            function genderChanged()
+            {
+            	var x = document.getElementById("selectpro").value;
+            	var price = document.getElementById('txtprice').value;
+            	var message = document.getElementById('txtbill');
+            	priced = parseFloat(price);
+                disc = parseFloat(x);
+                total = (priced/100)*(100-disc);
+                message.innerHTML =total;
+            }
+ 
+        </script>
+</head>
+<body>
+	<div class="containerBill">
+		<form action="/updatebill" method="post" class="contentBill">
+			<div class="bill-content">
+				<table class="content-bill-1" >
+					<caption>Hóa đơn</caption>
+					<tr>
+						<td><label id="lb1">Mã hóa đơn: </label></td>
+						<td><input id="txtidbill" type="text" name="idBill" placeholder="Mã hóa đơn" th:value="${bill.getID}" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><label id="lb2">Tên khách hàng: </label></td>
+						<td><input id="txtname" type="text" name="nameCustomer" placeholder="Tên khách hàng" th:value="${bill.getName}" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><label id="lb4">Tổng giá: </label></td>
+						<td><input id="txtprice" type="text" name="totalPrice" placeholder="Tổng giá" th:value="${totalprice}" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><label id="lb6">Khuyến mãi </label></td>
+						<td>
+							<select id="selectpro" name="promotionbill" onchange="genderChanged()">
+								<option th:each="list : ${listpromotion}" th:text="${list.getPromoName}+' | '+${list.getDiscount}" th:value="${list.getDiscount}">
+								</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label id="lb7">Tổng hóa đơn: </label></td>
+						<td><p id="txtbill" th:text="${bill.getBillTotal}" ></p></td>
+					</tr>
+					<tr>
+						<td><label id="lb9">Trạng thái:</label></td>
+						<td>
+							<select name="filterbill" class="selectPay">
+								<option th:selected="${bill.getBillStatus=='Chưa thanh toán'}" value="Chưa thanh toán">Chưa thanh toán</option>
+								<option th:selected="${bill.getBillStatus=='Đã thanh toán'}" value="Đã thanh toán">Đã thanh toán</option>
+								<option th:selected="${bill.getBillStatus=='Thanh toán thất bại'}" value="Thanh toán thất bại">Thanh toán thất bại</option>
+								
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label id="l8">Hình thức thanh toán: </label></td>
+						<td>
+							<select name="methodPay" class="selectPay">
+								<option th:each="list3 : ${listpay}" th:text="${list3.getMethodPayName}" th:value="${list3.getMethodPayId}"
+								th:selected="${list3.getMethodPayId==bill.getMethodPayId}"></option>
+
+							</select><br>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="bill-content2">
+				<table class="content-bill-2">
+					<caption>Danh sách món:</caption>
+					<tr id="headtable">
+						<th>#</th>
+						<th>Tên món</th>
+						<th>Số lượng</th>
+						<th>Giá tiền</th>
+					</tr>
+					<tr th:each="list2 : ${listproduct}">
+						<td th:text="${list2.getStt}"></td>
+						<td th:text="${list2.getName}"></td>
+						<td th:text="${list2.getSoluong}"></td>
+						<td th:text="${list2.getPrice}"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="buttonbill">
+				<button id="btsubmit" type="submit">Save</button>
+				<button id="btcancel" type="button" th:attr="onclick='location.href=\'' + @{/listbill/} + '\''">Cancel</button>
+			</div>
+			
+		</form>
+	</div>
+
+</body>
+</html>
