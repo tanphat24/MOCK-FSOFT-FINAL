@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/managerTable.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+	<div class="modal-header">
+		<h4 class="modal-title">CẬP NHẬT BÀN</h4>
+	</div>
+	<form th:action="@{/admin/saveTable}" method="post">
+		<div class="modal-body">
+			<label for="">Id bàn</label>
+			<div class="form-group">
+				<input type="text" class="form-control form-control-sm"
+					placeholder="input the name of package" name="tableId"	
+					th:value="${table.tableId}" readonly="readonly"/>
+			</div>
+
+			<label for="">Tên bàn</label>
+			<div class="form-group">
+				<input type="text" class="form-control form-control-sm"
+					placeholder="input the price of package" name="tableName"
+					th:value="${table.tableName}" />
+			</div>
+
+			<label for="">Số lượng tối đa</label>
+			<div class="form-group">
+				<input type="text" class="form-control form-control-sm"
+					placeholder="input the time of package" name="tableQuantity"
+					th:value="${table.tableQuantity}" />
+			</div>
+		</div>
+		<button class="btn btn-success" type="submit">SUBMIT</button>
+	</form>
+
+</body>
+</html>

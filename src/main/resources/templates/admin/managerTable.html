@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./css/managerTable.css" />
+	<style>
+        body {
+            background-color: #fbfbfb;
+        }
+
+        @media (min-width: 991.98px) {
+            main {
+                padding-left: 240px;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 58px 0 0; /* Height of navbar */
+            box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+            width: 240px;
+            z-index: 600;
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                width: 100%;
+            }
+        }
+
+        .sidebar .active {
+            border-radius: 5px;
+            box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+        }
+
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: 0.5rem;
+            overflow-x: hidden;
+            overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        }
+
+        #sidebarMenu, #main-navbar {
+            background: #0a3d62 !important;
+        }
+
+        .list-group-item:hover {
+            background: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+	<header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+        <div class="position-sticky">
+            <div class="list-group list-group-flush mx-3 mt-4">
+                <a
+                        href="/admin/managerTable"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                        aria-current="true"
+                >
+                    <span>Quản lý thông tin người dùng</span>
+                </a>
+                <a href="/admin/managerTable" class="list-group-item list-group-item-action py-2 ripple">
+                    <span>Quản lý bàn</span>
+                </a>
+                <a href="/admin/orderTable" class="list-group-item list-group-item-action py-2 ripple"
+                ><span>Đặt bàn</span></a
+                >
+                <a href="/admin" class="list-group-item list-group-item-action py-2 ripple"
+                ><span>Quản lý doanh mục sản phẩm</span></a
+                >
+                <a href="/admin" class="list-group-item list-group-item-action py-2 ripple"
+                ><span>Quản lý sản phẩm </span></a
+                >
+                <a href="/admin/Ingredient" class="list-group-item list-group-item-action py-2 ripple">
+                    <span>Quản lý nguyên vật liệu </span>
+                </a>
+                <a href="/admin/listbill" class="list-group-item list-group-item-action py-2 ripple"
+><span>Quản lý hóa đơn </span></a
+                >
+                <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                ><span>Quản lý dịch vụ</span></a
+                >
+                <a href="/admin/listpromotion" class="list-group-item list-group-item-action py-2 ripple"
+                ><span>Quản lý khuyến mãi</span></a
+                >
+                <a href="/admin/WareHouse" class="list-group-item list-group-item-action py-2 ripple"
+                ><span>Quản lý kho</span></a
+                >
+                <a href="/admin/Contract" class="list-group-item list-group-item-action py-2 ripple"
+                ><span>Quản lý hợp đồng</span></a
+                >
+                <a href="/admin/statistical" class="list-group-item list-group-item-action py-2 ripple"
+                ><span>Thống kê doanh thu</span></a
+                >
+                <a th:href="@{/logout}" class="list-group-item list-group-item-action py-2 ripple"
+                ><span>Đăng xuất</span></a
+                >
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <div style="display: flex">
+                <a class="navbar-brand" href="#">
+                    <img
+                            src="https://static.vecteezy.com/system/resources/previews/009/161/216/original/mrb-letter-logo-design-with-polygon-shape-mrb-polygon-and-cube-shape-logo-design-mrb-hexagon-logo-template-whi...or.jpg"
+                            height="40"
+                            alt="MDB Logo"
+                            loading="lazy"
+                    />
+                </a>
+                <!-- Search form -->
+                <form class="d-none d-md-flex input-group w-auto my-auto">
+                    <input
+                            autocomplete="off"
+                            type="search"
+                            class="form-control rounded"
+                            placeholder='Search'
+                            style="min-width: 225px;"
+                    />
+                    <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+                </form>
+            </div>
+            <!-- Right links -->
+            <div style="
+    font-size: 20px;
+    color: white;
+    font-weight: bold;">Xin chào: <span sec:authentication=" principal.username"/></span>
+            </div>
+        </div>
+    </nav>
+</header>
+  
+  
+  	
+    <div class="container-table" style="padding: 85px 16px 16px 300px;">
+      <div class="body">
+        <div class="main">
+          <div class="nut">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#myModalAdd"
+            >
+              Thêm bàn
+            </button>
+            <div class="modal" id="myModalAdd">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Thêm bàn</h4>
+                  </div>
+                  <form th:action="@{/admin/saveTable}" method="post">
+                    <div class="modal-body">
+                      <label for="">Tên bàn</label>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          placeholder="Nhập tên bàn"
+                          name="tableName"
+                        />
+                      </div>
+
+                      <label for="">Số người tối đa</label>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          placeholder="Nhập số người tối đa"
+                          name="tableQuantity"
+                        />
+                      </div>
+                      <button class="btn btn-success" type="submit">
+                        SUBMIT
+                      </button>
+                    </div>
+                  </form>
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal" id="myModalUpdate">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">CẬP NHẬT BÀN</h4>
+                  </div>
+                  <form th:action="@{/saveTable}" method="post">
+                    <div class="modal-body">
+                      <label for="">Id bàn</label>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          placeholder="input the name of package"
+                          name="tableId"
+                        />
+                      </div>
+
+                      <label for="">Tên bàn</label>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          placeholder="input the price of package"
+                          name="tableName"
+                        />
+                      </div>
+
+                      <label for="">Số lượng tối đa</label>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          placeholder="input the time of package"
+                          name="tableQuantity"
+                        />
+                      </div>
+                    </div>
+                  </form>
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>ID Bàn</th>
+                <th>Tên Bàn</th>
+                <th>Số lượng tối đa</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="table: ${listTable}">
+                <td th:text="${table.tableId}"></td>
+                <td th:text="${table.tableName}"></td>
+                <td th:text="${table.tableQuantity}"></td>
+                <td th:text="${table.tableStatus}"></td>
+                <td>
+                  <a
+                    class="btn btn-success"
+                    type="submit"
+                    th:href="@{/admin/formUpdateTable/{id}(id=${table.tableId})}"
+                    >Update</a
+                  >
+                  <a
+                    class="btn btn-danger"
+                    type="submit"
+                    th:href="@{/admin/deleteTable/{id}(id=${table.tableId})}"
+                    >Delete</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="../css/header.css" />
+<link rel="stylesheet" href="../css/footer.css" />
+<link rel="stylesheet" href="../css/bookTable.css" />
+
+</head>
+<body>
+	<div th:replace="user/header :: header"></div>
+	<div class="background">
+      <div class="form-book-table">
+          <h2>Đặt bàn</h2>
+          <form th:action="@{/user/handleBookTable}" method="post">
+            <input th:name="name" type="text" placeholder="Tên" />
+            <input
+            th:name="email"
+              type="text"
+              placeholder="Email"
+            />
+            <input th:name="quantity" type="text" placeholder="Số người" />
+            <input
+            th:name="phone"
+              type="text"
+              placeholder="Số điện thoại"
+            />
+            <input th:name="date" type="date" placeholder="Ngày đặt" /><input
+            th:name="time"
+            type="time"
+              placeholder="Giờ đặt"
+            />
+            <input th:name="note" type="text" placeholder="Ghi chú" />
+            <button type="submit">Đặt bàn</button>
+          </form>
+      </div >
+    </div>
+	<div th:replace="user/footer :: footer"></div>
+</body>
+</html>

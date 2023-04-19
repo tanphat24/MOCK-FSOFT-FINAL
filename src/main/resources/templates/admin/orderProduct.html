@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+
+<link crossorigin="anonymous"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/orderProduct.css">
+<style>
+body {
+	background-color: #fbfbfb;
+}
+
+@media ( min-width : 991.98px) {
+	main {
+		padding-left: 240px;
+	}
+}
+
+/* Sidebar */
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	padding: 58px 0 0; /* Height of navbar */
+	box-shadow: 0 2px 5px 0 rgb(0 0 0/ 5%), 0 2px 10px 0 rgb(0 0 0/ 5%);
+	width: 240px;
+	z-index: 600;
+}
+
+@media ( max-width : 991.98px) {
+	.sidebar {
+		width: 100%;
+	}
+}
+
+.sidebar .active {
+	border-radius: 5px;
+	box-shadow: 0 2px 5px 0 rgb(0 0 0/ 16%), 0 2px 10px 0 rgb(0 0 0/ 12%);
+}
+
+.sidebar-sticky {
+	position: relative;
+	top: 0;
+	height: calc(100vh - 48px);
+	padding-top: 0.5rem;
+	overflow-x: hidden;
+	overflow-y: auto;
+	/* Scrollable contents if viewport is shorter than content. */
+}
+
+#sidebarMenu, #main-navbar {
+	background: #0a3d62 !important;
+}
+
+.list-group-item:hover {
+	background: #bdc3c7;
+}
+</style>
+</head>
+<body>
+	<header>
+		<!-- Sidebar -->
+		<nav id="sidebarMenu"
+			class="collapse d-lg-block sidebar collapse bg-white">
+			<div class="position-sticky">
+				<div class="list-group list-group-flush mx-3 mt-4">
+					<a href="/admin/"
+						class="list-group-item list-group-item-action py-2 ripple"
+						aria-current="true"> <span>Quản lý thông tin người dùng</span>
+					</a> <a href="/admin/managerTable"
+						class="list-group-item list-group-item-action py-2 ripple"> <span>Quản
+							lý bàn</span>
+					</a> <a href="/admin/orderTable"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Đặt
+							bàn</span></a> <a href="/admin"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Quản
+							lý doanh mục sản phẩm</span></a> <a href="/admin"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Quản
+							lý sản phẩm </span></a> <a href="/admin/Ingredient"
+						class="list-group-item list-group-item-action py-2 ripple"> <span>Quản
+							lý nguyên vật liệu </span>
+					</a> <a href="/admin/listbill"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Quản
+							lý hóa đơn </span></a> <a href="#"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Quản
+							lý dịch vụ</span></a> <a href="/admin/listpromotion"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Quản
+							lý khuyến mãi</span></a> <a href="/admin/WareHouse"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Quản
+							lý kho</span></a> <a href="/admin/Contract"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Quản
+							lý hợp đồng</span></a> <a href="/admin/statistical"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Thống
+							kê doanh thu</span></a> <a th:href="@{/logout}"
+						class="list-group-item list-group-item-action py-2 ripple"><span>Đăng
+							xuất</span></a>
+				</div>
+			</div>
+		</nav>
+		<!-- Navbar -->
+		<nav id="main-navbar"
+			class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+			<!-- Container wrapper -->
+			<div class="container-fluid">
+				<div style="display: flex">
+					<a class="navbar-brand" href="#"> <img
+						src="https://static.vecteezy.com/system/resources/previews/009/161/216/original/mrb-letter-logo-design-with-polygon-shape-mrb-polygon-and-cube-shape-logo-design-mrb-hexagon-logo-template-white-and-black-colors-mrb-monogram-business-and-real-estate-logo-vector.jpg"
+						height="40" alt="MDB Logo" loading="lazy" />
+					</a>
+					<!-- Search form -->
+					<form class="d-none d-md-flex input-group w-auto my-auto">
+						<input autocomplete="off" type="search"
+							class="form-control rounded" placeholder='Search'
+							style="min-width: 225px;" /> <span
+							class="input-group-text border-0"><i class="fas fa-search"></i></span>
+					</form>
+				</div>
+				<!-- Right links -->
+				<div style="font-size: 20px; color: white; font-weight: bold;">
+					Xin chào: <span
+						sec:authentication=" principal.username
+            "></span>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container-producc-detail">
+		<div class="content_left">
+			<div class="header">
+				<ul>
+					<li><input type="text" placeholder="Search.." /></li>
+				</ul>
+			</div>
+			<ul class="title_menu">
+				<!-- 					<li class="title"><a href="/">Tất cả</a></li> -->
+				<!-- 					<li class="title"><a href="/">Tất cả</a></li> -->
+				<!-- 					<li class="title"><a href="/">Tất cả</a></li> -->
+				<!-- 					<li class="title"><a href="/">Tất cả</a></li> -->
+				<!-- 					<li class="title"><a href="/">Tất cả</a></li> -->
+			</ul>
+			<div class="menu_dish">
+				<div class="dish" th:each="product: ${listProduct}">
+					<img th:src="${product.productImage}"
+						th:alt="${product.productName}" />
+					<p class="nameProduct" th:text="${product.productName}"></p>
+					<p class="price" th:text="${product.productPrice}"></p>
+					<a
+						th:href="@{/admin/orderProduct/__${idTable}__/products/__${product.getProductId}__}">Thêm</a>
+				</div>
+			</div>
+		</div>
+		<div class="content_right">
+			<div class="header_put">
+				<h2>[[${tableName}]]</h2>
+			</div>
+			<div class="pay_menu">
+				<form th:action="@{/admin/update/__${idTable}__/detailOrderTable}"
+					method="post">
+					<div class="product" th:each="detailOrder : ${listDetailOrder}">
+						<a class="delete-btn"
+							th:href="@{/admin/delete/__${idTable}__/detailOrderTable/__${detailOrder.detailOrderId}__}">Xóa</a>
+						<p class="nameProduct" th:text="${detailOrder.productName}"></p>
+						<input type="number" class="quantity"
+							th:name="quantity + ${detailOrder.detailOrderId}"
+							th:value="${detailOrder.productQuantity}">
+						<p class="price" th:text="${detailOrder.productPrice}"></p>
+						<p class="total" th:text="${detailOrder.total}"></p>
+						<input type="text"
+							th:name="idDetailOrder + ${detailOrder.detailOrderId}"
+							th:value="${detailOrder.detailOrderId}" style="display: none;">
+					</div>
+
+					<button class="update-btn" th:if="${listDetailOrder.size() > 0}"
+						type="submit">Cập nhật</button>
+					<a th:if="${listDetailOrder.size() > 0}" class="pay_title">Thanh
+						Toán</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+</html>

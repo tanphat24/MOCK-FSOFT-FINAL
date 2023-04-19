@@ -1,0 +1,45 @@
+.background{
+	background-image: url('../images/booking_tabel_bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.form-book-table{
+    width: 40%;
+    padding: 32px 60px;
+}
+
+.form-book-table h2{
+    font-size: 40px;
+    color: #fff;
+    line-height: 1.25;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+.form-book-table input{
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 16px;
+    color: #ccc;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 8px;
+    background-color: transparent;
+}
+
+.form-book-table button {
+    display: inline-block;
+    font-size: 14px;
+    color: #fff;
+    text-transform: capitalize;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    padding: 14.5px 43px;
+    background-color: #ff6426;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+}
